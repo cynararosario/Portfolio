@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cynara Rosario | Graphic Designer</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #ff6b6b;
+            --light-color: #f9f9f9;
+            --dark-color: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            background-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav ul li a.active {
+            color: var(--accent-color);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+        
+        h2 {
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            border-radius: 50%;
+            max-width: 300px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 5px solid white;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .hero-image img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .hero-text {
+            flex: 2;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background-color: #e95c5c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .skill {
+            background-color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .skill:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .portfolio-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-item .content {
+            padding: 1.5rem;
+        }
+        
+        .experience {
+            margin: 2rem 0;
+        }
+        
+        .experience-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .experience-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-left-color: var(--accent-color);
+        }
+        
+        .about {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 0;
+            background-image: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 2;
+        }
+        
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-image img {
+            border-radius: 10px;
+            max-width: 100%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+        
+        .contact {
+            background-color: var(--light-color);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 2rem 0;
+        }
+        
+        .contact-item {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 10px;
+            margin: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-top: 3px solid var(--accent-color);
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 99;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero, .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero-image img {
+                max-width: 250px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Cynara Rosario</h1>
+            <p>Graphic Designer | Computer Engineering Student</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <section id="home">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-image">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202025-04-29%20at%2023.21.01_878f1624.jpg-Q1VcpRsRmUeC4qJUzw29fKM97QTgS4.jpeg" alt="Cynara Rosario">
+                </div>
+                <div class="hero-text">
+                    <h2>Hello, I'm Cynara</h2>
+                    <p>A passionate Graphic Designer with expertise in Adobe Suite and a Computer Engineering student. I create visually appealing designs that communicate powerful messages while continually expanding my technical skills.</p>
+                    <a href="#contact" class="btn">Let's Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills" class="container">
+        <h2>My Skills</h2>
+        <div class="skills">
+            <div class="skill">Adobe Photoshop</div>
+            <div class="skill">Adobe Illustrator</div>
+            <div class="skill">Adobe InDesign</div>
+            <div class="skill">Adobe Premiere Pro</div>
+            <div class="skill">Video Editing</div>
+            <div class="skill">Social Media Management</div>
+            <div class="skill">HTML/CSS (Learning)</div>
+            <div class="skill">JavaScript (Learning)</div>
+            <div class="skill">UI/UX Design</div>
+        </div>
+    </section>
+    
+    <section id="portfolio" class="container">
+        <h2>My Portfolio</h2>
+        <div class="portfolio">
+            <div class="portfolio-item">
+                <img src="/placeholder.svg?height=300&width=400" alt="Brand Design">
+                <div class="content">
+                    <h3>Brand Identity</h3>
+                    <p>Complete brand identity design for a startup tech company.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/placeholder.svg?height=300&width=400" alt="Social Media Campaign">
+                <div class="content">
+                    <h3>Social Media Campaign</h3>
+                    <p>Comprehensive social media design package for an e-commerce brand.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/placeholder.svg?height=300&width=400" alt="Video Editing">
+                <div class="content">
+                    <h3>Promotional Video</h3>
+                    <p>Short promotional video highlighting product features.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/placeholder.svg?height=300&width=400" alt="Web Design">
+                <div class="content">
+                    <h3>Web Design Concept</h3>
+                    <p>Modern web interface concept for a fitness application.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/placeholder.svg?height=300&width=400" alt="Print Design">
+                <div class="content">
+                    <h3>Print Materials</h3>
+                    <p>Business cards, brochures, and marketing materials.</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <img src="/placeholder.svg?height=300&width=400" alt="Logo Design">
+                <div class="content">
+                    <h3>Logo Collection</h3>
+                    <p>Various logo designs created for different clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience" class="container">
+        <h2>Work Experience</h2>
+        <div class="experience">
+            <div class="experience-item">
+                <h3>Graphic Designer</h3>
+                <p><strong>Startup Companies</strong> | Freelance</p>
+                <p>Created visual content, designed marketing materials, and established brand identities for various startup companies. Worked closely with founders to translate their vision into compelling visual designs.</p>
+            </div>
+            <div class="experience-item">
+                <h3>Social Media Manager</h3>
+                <p><strong>Various Brands</strong> | Freelance</p>
+                <p>Managed social media accounts for multiple brands, creating engaging visual content, planning content calendars, and improving online presence. Increased engagement rates through consistent, high-quality posts.</p>
+            </div>
+            <div class="experience-item">
+                <h3>Volunteer Teacher</h3>
+                <p><strong>Community Service</strong></p>
+                <p>Taught underprivileged children various subjects without charging any fees. Focused on creating engaging learning materials and providing accessible education to those with financial constraints.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm Cynara Rosario, a BTech student specializing in Computer Engineering with a passion for graphic design. My journey combines technical knowledge with creative expression, allowing me to approach design problems from multiple perspectives.</p>
+                    <p>With experience working with startups and managing social media accounts for various brands, I've developed a keen eye for visual communication that resonates with target audiences. I'm constantly expanding my skill set by learning coding languages to bridge the gap between design and development.</p>
+                    <p>Beyond my professional pursuits, I'm committed to giving back to the community. I've taught children from financially disadvantaged backgrounds without charging fees, believing that education should be accessible to everyone regardless of their economic status.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/placeholder.svg?height=300&width=400" alt="About Cynara">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact container">
+        <h2>Get In Touch</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <h3>Phone</h3>
+                <p>+91 9004071897</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>rosariocynara@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>Mumbai, India</p>
+            </div>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://www.instagram.com/cynararosario/?hl=en" class="social-link" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/cynara-rosario-a697b22a5/" class="social-link" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/cynararosario" class="social-link" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Cynara Rosario. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a, .back-to-top').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 70,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Add active class to nav items on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            const backToTop = document.getElementById('backToTop');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Show/hide back to top button
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // Add animation to skills on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.skill').forEach(skill => {
+            skill.style.opacity = 0;
+            skill.style.transform = 'translateY(20px)';
+            skill.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(skill);
+        });
+    </script>
+</body>
+</html>
